@@ -10,10 +10,7 @@ import { ServiceResult } from 'src/shared/interfaces/service.result';
 @Injectable()
 export class UsuarioService {
 
-  constructor(
-    @InjectRepository(Usuario) private usuarioRepository: Repository<Usuario>,
-    private readonly authUtilsService: AuthUtilsService
-  ) { }
+  constructor(@InjectRepository(Usuario) private usuarioRepository: Repository<Usuario>) { }
 
   async create(usuarioDto: UsuarioDto): Promise<ServiceResult> {
     let serviceResult = { boolean: false, message: '', number: 0, object: null, data: null } as ServiceResult;
@@ -21,16 +18,17 @@ export class UsuarioService {
     // Verificar que no exista user y ci
     const usuario = await this.exists(usuarioDto.user, usuarioDto.ci);
     if (usuario) {
+      serviceResult.message = 'El email y/o el ci ya existen.';
       return serviceResult;
     }
 
     // Agregar usuario a DB
     const newUsuario = this.usuarioRepository.create(usuarioDto)
 
-    await this.usuarioRepository.save(newUsuario);
+    const savedUsuario = await this.usuarioRepository.save(newUsuario);
 
     serviceResult.boolean = true;
-    serviceResult.object = newUsuario;
+    serviceResult.message = 'Usuario agregado correctamente.';
 
     return serviceResult;
   }

@@ -6,14 +6,14 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { storage } from 'src/shared/utils/media/media.handle';
 import { ApiResult } from 'src/shared/interfaces/api.result';
-import { routeAuthForgot, routeAuthLogin } from 'src/shared/utils/api/api.route';
+import { routeAuthForgot, routeAuthLogin, routeAuthRegistro } from 'src/shared/utils/api/api.route';
 import { UsuarioService } from '../usuario/usuario.service';
 import { UsuarioDto } from '../usuario/dto/usuario.dto';
 import { AuthUtilsService } from 'src/shared/services/auth-utils.service';
 
-@ApiTags('auth')
+//@ApiBearerAuth()
 // @UseInterceptors(LoggerInterceptor)
-@ApiBearerAuth()
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
 
@@ -26,7 +26,6 @@ export class AuthController {
   // Inicio de sesión
   @Get('login/:user/:password')
   async authLogin(@Param('user') user: string, @Param('password') password: string): Promise<ApiResult> {
-
     let apiResult = { title: routeAuthLogin.title, route: routeAuthLogin.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
 
     try {
@@ -75,6 +74,40 @@ export class AuthController {
       apiResult.message = loginError.code;
     }
     return apiResult;
+  }
+
+  @Post()
+  async create(@Body() authDto: AuthDto): Promise<ApiResult> {
+    let apiResult = { title: routeAuthRegistro.title, route: routeAuthRegistro.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
+
+    authDto.password = await this.authUtilsService.hashPassword(authDto.password);
+
+    try {
+      const result = await this.authService.create(authDto);
+      if (!result.boolean) {
+        apiResult.code = HttpStatus.CONFLICT;
+        apiResult.message = result.message;
+        return apiResult;
+      }
+
+      if (result.boolean) {
+        apiResult.status = 'correct';
+        apiResult.code = HttpStatus.OK;
+        apiResult.message = 'Se agregó correctamente el usuario a Auth.';
+        apiResult.boolean = true;
+        apiResult.rows = 1;
+        apiResult.data = [];
+      } else {
+        apiResult.code = HttpStatus.CONFLICT;
+        apiResult.message = 'No se ha podido agregar el usuario a Auth.';
+      }
+
+    } catch (error) {
+      apiResult.code = HttpStatus.NOT_FOUND;
+      apiResult.message = error.code;
+    }
+    return apiResult;
+
   }
 
   // Forgot Password

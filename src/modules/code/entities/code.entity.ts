@@ -2,6 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Code {
+    
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -13,8 +14,17 @@ export class Code {
 
     @Column()
     descripcion: string;
-    
+
     @Column()
-    estado: string;
+    var_string: string;
+
+    @Column()
+    var_number: number;
+
+    @Column()
+    count: number;
+
+    @Column()
+    estado: number;
 
 }

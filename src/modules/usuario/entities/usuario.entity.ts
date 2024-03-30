@@ -6,6 +6,9 @@ export class Usuario {
   user: string;
 
   @Column()
+  codigo: string;
+
+  @Column()
   nombres: string;
 
   @Column()
@@ -17,30 +20,53 @@ export class Usuario {
   @Column()
   celular: string;
 
-  @Column({ unique: true })
+  @Column()
+  telefono: string;
+
+  @Column()
   ci: string;
 
   @Column()
   exp: string;
 
+  // ========== \\
+  @Column()
+  fec_ingreso: string;
+
+  @Column()
+  fec_baja: string;
+
+  @Column()
+  banco: string;
+
+  @Column()
+  nro_cuenta: string;
+
+  @Column()
+  sexo: string;
+
+  @Column()
+  est_civil: string;
+
+  @Column()
+  fec_nac: string;
+
+  // ========== \\
   @Column()
   rol: string;
-
-  @Column({ type: 'int' })
-  autorizacion: number;
 
   @Column()
   img: string;
 
-  @Column({ type: 'int', default: 1 })
+  @Column()
   estado: number;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column()
   fec_crea: string;
 
   @Column()
   user_mod: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  @Column()
   fec_mod: string;
 }

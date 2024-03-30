@@ -1,4 +1,14 @@
 import { PartialType } from '@nestjs/swagger';
-import { CreateCodeDto } from './create-code.dto';
+import { CodeDto } from './code.dto';
 
-export class UpdateCodeDto extends PartialType(CreateCodeDto) {}
+export class UpdateCodeDto extends PartialType(CodeDto) {
+
+    code: string;
+    type: string;
+    descripcion: string;
+    var_string: string;
+    var_number: number;
+    count: number;
+    estado: number;
+
+}

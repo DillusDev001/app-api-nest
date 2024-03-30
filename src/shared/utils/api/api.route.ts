@@ -29,7 +29,33 @@ export const routeAuthForgot = {
     route: '[PATCH].../v1/auth/:user',
     title: 'Forgot Password'
 };
-// ========= PERSONA ========= \\
+
+// ========= CONTACTO ========= \\
+export const routeContactoAgregar = {
+    route: '[POST].../v1/contacto/:user',
+    title: 'Agregar Contactos'
+};
+
+export const routeContactoLista = {
+    route: '[GET].../v1/contacto/:user',
+    title: 'Lista Contactos'
+};
+
+// ========= CODE ========= \\
+export const routeCodeGet = {
+    route: '[GET].../v1/code/:code',
+    title: 'Obtener un code'
+};
+
+export const routeCodeLista = {
+    route: '[GET].../v1/code',
+    title: 'Lista Code'
+};
+
+export const routeCodeUpdate = {
+    route: '[PATCH].../v1/code/:id',
+    title: 'Update Code'
+};
 
 // =========  ========= \\
 

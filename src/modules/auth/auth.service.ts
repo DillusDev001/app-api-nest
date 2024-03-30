@@ -41,12 +41,28 @@ export class AuthService {
   async create(authDto: AuthDto): Promise<ServiceResult> {
     let serviceResult = { boolean: false, message: '', number: 0, object: null, data: null } as ServiceResult;
 
+    const auth = await this.exists(authDto.user);
+    if (auth) {
+      serviceResult.message = 'El usuario ya existe.';
+      return serviceResult;
+    }
+
     // Agregar auth a DB
     const newAuth = this.authRepository.create(authDto);
     await this.authRepository.save(newAuth);
-    serviceResult.object = newAuth;
+
+    serviceResult.boolean = true;
 
     return serviceResult;
+  }
+
+  async exists(user: string) {
+    const count = await this.authRepository
+      .createQueryBuilder()
+      .where('user = :user', { user })
+      .getCount();
+
+    return count >= 1 ? true : false;
   }
 
   async update(user: string, updateAuthDto: UpdateAuthDto): Promise<ServiceResult> {
@@ -81,7 +97,7 @@ export class AuthService {
   }
 
 
-  
+
 
 
 

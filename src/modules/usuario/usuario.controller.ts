@@ -14,9 +14,7 @@ import { AuthService } from '../auth/auth.service';
 @Controller('usuario')
 export class UsuarioController {
   constructor(
-    private readonly usuarioService: UsuarioService,
-    private readonly authUtilsService: AuthUtilsService,
-    private readonly authService: AuthService
+    private readonly usuarioService: UsuarioService
   ) { }
 
   // Registro de Usuario
@@ -24,52 +22,26 @@ export class UsuarioController {
   async create(@Body() usuarioDto: UsuarioDto): Promise<ApiResult> {
     let apiResult = { title: routeUsuarioRegistro.title, route: routeUsuarioRegistro.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
 
-    const { pregunta, respuesta } = usuarioDto;
     try {
       // Preguntar si se ha agregado correctamente en Usuario
       const resultUsuario = await this.usuarioService.create(usuarioDto);
       if (!resultUsuario.boolean) {
         apiResult.code = HttpStatus.CONFLICT;
-        apiResult.message = 'El email y/o el ci ya existen.';
+        apiResult.message = resultUsuario.message;
         return apiResult;
       }
 
-      // agregar a la tabla Auth
-      const auth = {
-        user: usuarioDto.user,
-        password: await this.authUtilsService.hashPassword(usuarioDto.ci),
-        pregunta: pregunta,
-        respuesta: respuesta
-      } as AuthDto
-
-      try {
-        // agregar a la tabla Auth
-        const resultAuth = await this.authService.create(auth);
-
-        apiResult.status = 'correct';
-        apiResult.code = HttpStatus.OK;
-        apiResult.message = 'Usuario agregado correctamente, ahora debe iniciar sesión.';
-        apiResult.boolean = true;
-        apiResult.rows = 1;
-        apiResult.data = [];
-
-        return apiResult;
-
-      } catch (authError) {
-        // Eliminar Usuario Creado
-        const remove = await this.usuarioService.remove(usuarioDto.user, usuarioDto.ci);
-
-        apiResult.code = HttpStatus.NOT_MODIFIED;
-        apiResult.message = authError.message;
-        apiResult.data = [];
-
-        return apiResult;
-      }
+      apiResult.status = 'correct';
+      apiResult.code = HttpStatus.OK;
+      apiResult.message = 'Usuario agregado correctamente, ahora debe iniciar sesión.';
+      apiResult.boolean = true;
+      apiResult.rows = 1;
+      apiResult.data = [];
     } catch (usuarioError) {
       apiResult.code = HttpStatus.NOT_FOUND;
-      apiResult.message = usuarioError.message;
-      return apiResult;
+      apiResult.message = usuarioError.message + ' - usuarioError';
     }
+    return apiResult;
   }
 
   @Get()

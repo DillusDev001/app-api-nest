@@ -1,59 +1,89 @@
 import { ApiProperty } from "@nestjs/swagger"
-import { IsNotEmpty } from "class-validator"
+import { IsEmpty, IsNotEmpty } from "class-validator"
 
 export class UsuarioDto {
+    @ApiProperty()
+    @IsNotEmpty()
+    user: string;
+
+    @ApiProperty()
+    codigo: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    user: string
+    nombres: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    nombres: string
+    apellidos: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    apellidos: string
+    code: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    code: string
+    celular: string;
+
+    @ApiProperty()
+    telefono: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    celular: string
+    ci: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    ci: string
+    exp: string;
+
+    // ========== \\
+    @ApiProperty()
+    @IsNotEmpty()
+    fec_ingreso: string;
+
+    @ApiProperty()
+    fec_baja: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    exp: string
+    banco: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    rol: string
+    nro_cuenta: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    autorizacion: number
-
-    @ApiProperty()
-    img: string
-
-    @ApiProperty()
-    estado: number
+    sexo: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    user_mod: string
-
-    @ApiProperty()
-    pregunta: string
+    est_civil: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    respuesta: string
+    fec_nac: string;
 
+    // ========== \\
+    @ApiProperty()
+    @IsNotEmpty()
+    rol: string;
+
+    @ApiProperty()
+    img: string;
+
+    @ApiProperty()
+    estado: number;
+
+    @ApiProperty()
+    @IsEmpty()
+    fec_crea: any;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    user_mod: string;
+
+    @ApiProperty()
+    @IsEmpty()
+    fec_mod: any;
 }
