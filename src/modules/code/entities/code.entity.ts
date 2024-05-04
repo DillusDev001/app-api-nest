@@ -25,6 +25,9 @@ export class Code {
     count: number;
 
     @Column()
+    user: string;
+
+    @Column()
     estado: number;
 
 }

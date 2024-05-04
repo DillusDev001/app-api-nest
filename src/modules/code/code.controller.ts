@@ -4,7 +4,7 @@ import { CodeDto } from './dto/code.dto';
 import { UpdateCodeDto } from './dto/update-code.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiResult } from 'src/shared/interfaces/api.result';
-import { routeCodeGet, routeCodeLista, routeCodeUpdate } from 'src/shared/utils/api/api.route';
+import { routeCodeAdd, routeCodeDelete, routeCodeGet, routeCodeLista, routeCodeUpdate } from 'src/shared/utils/api/api.route';
 
 @ApiTags('code')
 @Controller('code')
@@ -12,8 +12,28 @@ export class CodeController {
   constructor(private readonly codeService: CodeService) { }
 
   @Post()
-  async create(@Body() codeDto: CodeDto) {
-    return this.codeService.create(codeDto);
+  async create(@Body() codeDto: CodeDto) : Promise<ApiResult> {
+    let apiResult = { title: routeCodeAdd.title, route: routeCodeAdd.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
+
+    try {
+      const result = await this.codeService.create(codeDto);
+
+      if (result.boolean) {
+        apiResult.status = 'correct';
+        apiResult.code = HttpStatus.OK;
+        apiResult.message = result.message;
+        apiResult.boolean = true;
+      } else {
+        apiResult.code = HttpStatus.CONFLICT;
+        apiResult.message = result.message;
+      }
+
+    } catch (error) {
+      apiResult.code = HttpStatus.NOT_FOUND;
+      apiResult.message = error.code;
+    }
+
+    return apiResult;
   }
 
   @Get(':code')
@@ -42,12 +62,12 @@ export class CodeController {
     return apiResult;
   }
 
-  @Get()
-  async findAll(): Promise<ApiResult> {
+  @Get('lista/:user')
+  async findAll(@Param('user') user: string): Promise<ApiResult> {
     let apiResult = { title: routeCodeLista.title, route: routeCodeLista.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
 
     try {
-      const result = await this.codeService.findAll();
+      const result = await this.codeService.findAll(user);
 
       apiResult.status = 'correct';
       apiResult.code = HttpStatus.OK;
@@ -93,19 +113,19 @@ export class CodeController {
 
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<ApiResult> {
-    let apiResult = { title: routeCodeUpdate.title, route: routeCodeUpdate.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
+    let apiResult = { title: routeCodeDelete.title, route: routeCodeDelete.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
 
     try {
       const codeResult = await this.codeService.remove(id);
 
-      if(codeResult.boolean){
+      if (codeResult.boolean) {
         apiResult.status = 'correct';
         apiResult.code = HttpStatus.OK;
         apiResult.message = codeResult.message;
         apiResult.boolean = true;
         apiResult.rows = codeResult.number;
         apiResult.data = null;
-      } else{
+      } else {
         apiResult.code = HttpStatus.CONFLICT;
         apiResult.message = codeResult.message;
       }

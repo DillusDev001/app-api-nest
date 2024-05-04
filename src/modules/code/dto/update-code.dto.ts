@@ -9,6 +9,7 @@ export class UpdateCodeDto extends PartialType(CodeDto) {
     var_string: string;
     var_number: number;
     count: number;
+    user: string;
     estado: number;
 
 }

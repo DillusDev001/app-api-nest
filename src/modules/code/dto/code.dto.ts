@@ -26,6 +26,10 @@ export class CodeDto {
     count: number;
 
     @ApiProperty()
+    @IsNotEmpty()
+    user: string;
+
+    @ApiProperty()
     estado: number
 
 }

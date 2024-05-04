@@ -10,7 +10,7 @@ import { ServiceResult } from 'src/shared/interfaces/service.result';
 export class CodeService {
 
   constructor(@InjectRepository(Code) private codeRepository: Repository<Code>) { }
-  
+
   async create(codeDto: CodeDto): Promise<ServiceResult> {
     let serviceResult = { boolean: false, message: '', number: 0, object: null, data: null } as ServiceResult;
 
@@ -50,9 +50,9 @@ export class CodeService {
     return serviceResult;
   }
 
-  async findAll(): Promise<ServiceResult> {
+  async findAll(user: string): Promise<ServiceResult> {
     let serviceResult = { boolean: false, message: '', number: 0, object: null, data: null } as ServiceResult;
-    const result = await this.codeRepository.find();
+    const result = await this.codeRepository.findBy({ user });
     const count = result.length;
 
     serviceResult.boolean = true;
@@ -64,13 +64,13 @@ export class CodeService {
   }
 
 
-  async remove(id: number) : Promise<ServiceResult> {
+  async remove(id: number): Promise<ServiceResult> {
     let serviceResult = { boolean: false, message: '', number: 0, object: null, data: null } as ServiceResult;
 
     const remove = await this.codeRepository.delete(id);
-    if(remove.affected === 1){
+    if (remove.affected === 1) {
       serviceResult.boolean = true;
-      serviceResult.message = remove.affected +'code(s) eliminado(s).';
+      serviceResult.message = remove.affected + 'code(s) eliminado(s).';
       serviceResult.number = remove.affected;
     }
 

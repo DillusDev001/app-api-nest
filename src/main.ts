@@ -22,15 +22,39 @@ async function bootstrap() {
     .setTitle('Documentacion API NestJS InigeniaLab')
     .setDescription('IngeniaLab Api Documentation')
     .setVersion('1.0')
+
     .addTag('code')
-    .addTag('auth')
     .addTag('usuario')
+    .addTag('auth')
     .addTag('contacto')
-    .addTag('empresa')
-    .addTag('persona')
+
+    .addTag('route') //*
+    .addTag('autorizacion-route') //*
+
+    .addTag('empresa') //*
+    .addTag('persona') //*
+
     .addTag('tipo-servicio')
     .addTag('servicio')
     .addTag('sub-servicio')
+
+    .addTag('cotizacion-frx')
+    .addTag('muestra-frx')
+    .addTag('parametro-frx')
+    .addTag('muestra-parametro-frx')
+    .addTag('recepcion-frx')
+    .addTag('documento-frx')
+
+    .addTag('cotizacion-general')
+    .addTag('cotizacion-general-sub-servicio')
+
+    .addTag('area')
+    .addTag('proveedor')
+    .addTag('tipo-gasto')
+    .addTag('gasto')
+    .addTag('unidad-medida')
+    .addTag('gasto-detalle')
+    
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('documentation', app, document);
