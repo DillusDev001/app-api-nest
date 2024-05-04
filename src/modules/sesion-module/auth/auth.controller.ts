@@ -60,11 +60,8 @@ export class AuthController {
         try {
           const usuarioResult = await this.usuarioService.find(user);
 
-          console.log('usuarioResult: ', usuarioResult.boolean);
-
           if (usuarioResult.boolean) {
             const usuario = usuarioResult.data[0] as UsuarioDto;
-            console.log('usuario: ', usuario);
 
             if (usuario.estado === 1) {
               apiResult.status = 'correct';
@@ -99,7 +96,7 @@ export class AuthController {
       apiResult.code = HttpStatus.NOT_FOUND;
       apiResult.message = loginError.code;
     }
-    console.log('apiResult: ', apiResult);
+    
     return apiResult;
   }
 
