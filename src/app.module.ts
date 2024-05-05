@@ -76,29 +76,14 @@ import { CotizacionGeneralSubServicioModule } from './modules/servicio-general-m
     ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'public') }), // para evitar el error en http://localhost:3000
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.HOST,
+      host: '127.0.0.1',
       port: 3306,
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
-      entities: [
-        Code,
-
-        Auth, Usuario, Contacto,
-
-        Persona, Empresa,
-
-        Route,
-
-        TipoServicio, Servicio, SubServicio,
-
-        CotizacionFrx, MuestraFrx, ParametroFrx, MuestraParametroFrx, RecepcionFrx, DocumentoFrx,
-
-        CotizacionGeneral, CotizacionGeneralSubServicio,
-
-        Area
-      ],
-      synchronize: false
+      username: 'root',
+      password: 'Mudanzas*123',
+      database: 'ingenialabDB',
+      
+      autoLoadEntities: true,
+      synchronize: true
     }),
 
     CodeModule,

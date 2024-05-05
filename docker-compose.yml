@@ -1,0 +1,23 @@
+version: '1.0'
+
+services:
+  nest:
+    container_name: nest-ingenialab
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '3001:3000'
+    volumes:
+      - ./src:/app/src
+
+  mysql_db:
+    image: mysql
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: Mudanzas*123
+      MYSQL_DATABASE: ingenialabDB
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Mudanzas*123

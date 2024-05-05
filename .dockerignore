@@ -1,0 +1,12 @@
+node_modules
+test
+.gitignore
+.git
+.prettierrc
+Dockerfile
+README.md
+
+# OS
+.DS_Store
+._*
+._.gitignores
