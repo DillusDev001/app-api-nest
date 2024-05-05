@@ -83,7 +83,7 @@ import { CotizacionGeneralSubServicioModule } from './modules/servicio-general-m
       database: 'ingenialabDB',
       
       autoLoadEntities: true,
-      synchronize: true
+      synchronize: false
     }),
 
     CodeModule,
