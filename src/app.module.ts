@@ -54,7 +54,8 @@ import { OrdenTrabajoGeneralModule } from './modules/gastos-module/orden-trabajo
       database: 'ingenialabDB',
       
       autoLoadEntities: true,
-      synchronize: true
+      dropSchema: false,
+      synchronize: false
     }),
 
     CodeModule,
