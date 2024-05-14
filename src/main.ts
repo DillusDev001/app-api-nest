@@ -47,12 +47,10 @@ async function bootstrap() {
 
     .addTag('cotizacion-general')
     .addTag('cotizacion-general-sub-servicio')
+    .addTag('orden-trabajo-general')
 
-    .addTag('area')
     .addTag('proveedor')
-    .addTag('tipo-gasto')
     .addTag('gasto')
-    .addTag('unidad-medida')
     .addTag('gasto-detalle')
     
     .build();

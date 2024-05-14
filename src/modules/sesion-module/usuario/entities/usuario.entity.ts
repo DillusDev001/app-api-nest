@@ -58,15 +58,17 @@ export class Usuario {
   @Column()
   img: string;
 
-  @Column()
+  @Column({default: 1})
   estado: number;
 
+  // @Column("timestamp", { precision: 3, default: () => "CURRENT_TIMESTAMP(3)"})
   @Column()
   fec_crea: string;
 
   @Column()
   user_mod: string;
 
+  // @Column("timestamp", { precision: 3, default: () => "CURRENT_TIMESTAMP(3)", onUpdate: "CURRENT_TIMESTAMP(3)"})
   @Column()
   fec_mod: string;
 }

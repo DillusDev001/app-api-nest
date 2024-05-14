@@ -8,6 +8,7 @@ import { ServiceResult } from 'src/shared/interfaces/service.result';
 
 @Injectable()
 export class CotizacionFrxService {
+  
   constructor(@InjectRepository(CotizacionFrx) private cotizacionFrxRepository: Repository<CotizacionFrx>) { }
 
   async create(cotizacionFrxDto: CotizacionFrxDto): Promise<ServiceResult> {

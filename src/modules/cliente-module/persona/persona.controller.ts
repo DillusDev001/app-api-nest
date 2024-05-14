@@ -88,9 +88,6 @@ export class PersonaController {
     return apiResult;
   }
 
-
-  findByID
-
   @Get()
   async findAll(): Promise<ApiResult> {
     let apiResult = { title: routePersonaLista.title, route: routePersonaLista.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;

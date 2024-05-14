@@ -27,13 +27,13 @@ export class Empresa {
     nit: string;
 
 
-    @Column()
+    @Column("timestamp", { precision: 3, default: () => "CURRENT_TIMESTAMP(3)" })
     fec_crea: string;
 
     @Column()
     user_crea: string;
 
-    @Column()
+    @Column("timestamp", { precision: 3, default: () => "CURRENT_TIMESTAMP(3)", onUpdate: "CURRENT_TIMESTAMP(3)" })
     fec_mod: string;
 
     @Column()

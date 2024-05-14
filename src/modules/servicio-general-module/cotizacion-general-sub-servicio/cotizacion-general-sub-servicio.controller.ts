@@ -10,6 +10,7 @@ import { routeCotizacionGeneralSubServicioAdd, routeCotizacionGeneralSubServicio
 @ApiTags('cotizacion-general-sub-servicio')
 @Controller('cotizacion-general-sub-servicio')
 export class CotizacionGeneralSubServicioController {
+  
   constructor(private readonly cotizacionGeneralSubServicioService: CotizacionGeneralSubServicioService) {}
 
   @Post()
@@ -70,4 +71,5 @@ export class CotizacionGeneralSubServicioController {
   async remove(@Param('cod_cotizacion') cod_cotizacion: string, @Param('muestra_sec') muestra_sec: number) {
     return await this.cotizacionGeneralSubServicioService.remove(cod_cotizacion, muestra_sec);
   }
+
 }

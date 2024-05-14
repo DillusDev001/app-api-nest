@@ -2,10 +2,11 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Contacto {
+
     @PrimaryColumn()
     user: string;
 
-    @PrimaryColumn()
+    @PrimaryColumn() 
     cont: number;
 
     @Column()
@@ -13,4 +14,5 @@ export class Contacto {
 
     @Column()
     nombre_contacto: string;
+    
 }

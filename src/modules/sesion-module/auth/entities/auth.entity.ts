@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Usuario } from "../../usuario/entities/usuario.entity";
 
 @Entity()
 export class Auth {
@@ -8,9 +9,9 @@ export class Auth {
     @Column()
     password: string
 
-    @Column({ type: 'varchar'})
+    @Column()
     pregunta: string
 
-    @Column({ type: 'varchar'})
+    @Column()
     respuesta: string 
 }

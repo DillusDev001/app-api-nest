@@ -86,7 +86,7 @@ export class AuthController {
           }
         } catch (usuarioError) {
           apiResult.code = HttpStatus.NOT_FOUND;
-          apiResult.message = usuarioError.code;
+          apiResult.message = usuarioError;
         }
       } else {
         apiResult.code = HttpStatus.NOT_FOUND;
@@ -94,7 +94,7 @@ export class AuthController {
       }
     } catch (loginError) {
       apiResult.code = HttpStatus.NOT_FOUND;
-      apiResult.message = loginError.code;
+      apiResult.message = loginError;
     }
     
     return apiResult;

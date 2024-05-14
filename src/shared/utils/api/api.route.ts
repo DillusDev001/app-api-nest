@@ -370,6 +370,69 @@ export const routeCotizacionGeneralSubServicioLista = {
     title: 'Lista Muestra FRX'
 };
 
+// ========= PROVEEDOR ========= \\
+export const routeProovedorAdd = {
+    route: '[POST].../v1/proovedor',
+    title: 'Registro proovedor'
+};
+
+export const routeProovedorGet = {
+    route: '[GET].../v1/proovedor/:attribute/:value',
+    title: 'Obtener una proovedor'
+};
+
+export const routeProovedorLista = {
+    route: '[GET].../v1/proovedor',
+    title: 'Lista proovedores'
+};
+
+export const routeProovedorUpdate = {
+    route: '[PATCH].../v1/proovedor/:id',
+    title: 'Update proovedor'
+};
+
+export const routeProovedorDelete = {
+    route: '[DELETE].../v1/proovedor/:id',
+    title: 'Delete proovedor'
+};
+
+// ========= COTIZACION ========= \\
+export const routeGastoAdd = {
+    route: '[POST].../v1/cotizacion-frx',
+    title: 'Registro Gasto'
+};
+
+export const routeGastoGet = {
+    route: '[GET].../v1/cotizacion-frx/:cod_cotizacion',
+    title: 'Búsqueda Gasto'
+};
+
+export const routeGastoGetLista = {
+    route: '[GET].../v1/cotizacion-frx/find-by-id-tipo-servicio/:id_tipo_servicio',
+    title: 'Obtener lista Gasto'
+};
+
+export const routeGastoUpdate = {
+    route: '[PATCH].../v1/cotizacion-frx/:id_parametro',
+    title: 'Update Gasto'
+};
+
+export const routeGastoDelete = {
+    route: '[DELETE].../v1/cotizacion-frx/:id_parametro',
+    title: 'Delete Gasto'
+};
+
+// ========= GASTO DETALLE ========= \\
+export const routeGastoDetalleAdd = {
+    route: '[POST].../v1/muestra-parametro-frx/:cod_cotizacion',
+    title: 'Agregar Gasto Detalle'
+};
+
+export const routeGastoDetalleLista = {
+    route: '[GET].../v1/muestra-parametro-frx/:cod_cotizacion',
+    title: 'Lista Gasto Detalle'
+};
+
 
 // =========  ========= \\
 
