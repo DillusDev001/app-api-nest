@@ -19,6 +19,9 @@ export class CotizacionGeneral {
     id_persona: number;
 
     @Column()
+    precio_servicio: number;
+
+    @Column()
     observacion: string;
 
     @Column()

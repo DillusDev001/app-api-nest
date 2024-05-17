@@ -16,10 +16,11 @@ export class CotizacionFrxService {
 
     // Agregar usuario a DB
     const newCode = this.cotizacionFrxRepository.create(cotizacionFrxDto);
-    await this.cotizacionFrxRepository.save(newCode);
+    const add = await this.cotizacionFrxRepository.save(newCode);
 
     serviceResult.boolean = true;
     serviceResult.message = 'Cotización: ' + cotizacionFrxDto.cod_cotizacion + ' se ha agregado correctamente.';
+    serviceResult.object = add;
 
     return serviceResult;
   }

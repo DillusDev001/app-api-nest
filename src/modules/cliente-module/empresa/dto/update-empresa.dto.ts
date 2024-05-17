@@ -10,6 +10,7 @@ export class UpdateEmpresaDto extends PartialType(EmpresaDto) {
     ciudad: string;
     pais: string;
     nit: string;
+    tipo: string;
     user_crea: string;
     user_mod: string;
 }

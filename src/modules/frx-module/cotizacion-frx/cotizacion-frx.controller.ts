@@ -23,6 +23,7 @@ export class CotizacionFrxController {
         apiResult.code = HttpStatus.OK;
         apiResult.message = result.message;
         apiResult.boolean = true;
+        apiResult.data = [result.object]
       } else {
         apiResult.code = HttpStatus.CONFLICT;
         apiResult.message = result.message;

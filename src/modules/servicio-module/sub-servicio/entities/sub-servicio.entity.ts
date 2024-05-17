@@ -14,12 +14,6 @@ export class SubServicio {
     @Column()
     descripcion: string;
 
-    @Column()
-    costo_directo: number;
-
-    @Column()
-    costo_variable: number;
-
 
     @Column("timestamp", { precision: 3, default: () => "CURRENT_TIMESTAMP(3)" })
     fec_crea: string;

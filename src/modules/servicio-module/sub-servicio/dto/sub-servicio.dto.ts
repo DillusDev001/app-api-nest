@@ -17,14 +17,6 @@ export class SubServicioDto {
     @IsNotEmpty()
     descripcion: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    costo_directo: number;
-
-    @ApiProperty()
-    @IsNotEmpty()
-    costo_variable: number;
-
 
     @ApiProperty()
     fec_crea: string;

@@ -36,6 +36,11 @@ export class EmpresaDto {
 
     @ApiProperty()
     @IsNotEmpty()
+    tipo: string;
+    
+
+    @ApiProperty()
+    @IsNotEmpty()
     user_crea: string;
 
     @ApiProperty()

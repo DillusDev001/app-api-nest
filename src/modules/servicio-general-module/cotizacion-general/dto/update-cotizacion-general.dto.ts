@@ -8,6 +8,7 @@ export class UpdateCotizacionGeneralDto extends PartialType(CotizacionGeneralDto
     fec_emision: string;
     id_servicio: number;
     id_persona: number;
+    precio_servicio: number;
     observacion: string;
     costo_total: number;
     descuento: number;

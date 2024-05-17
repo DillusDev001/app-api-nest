@@ -23,6 +23,10 @@ export class CotizacionGeneralDto {
     id_persona: number;
 
     @ApiProperty()
+    @IsNotEmpty()
+    precio_servicio: number;
+
+    @ApiProperty()
     observacion: string;
 
     @ApiProperty()

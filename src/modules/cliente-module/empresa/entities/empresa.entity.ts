@@ -26,6 +26,8 @@ export class Empresa {
     @Column()
     nit: string;
 
+    @Column()
+    tipo: string;
 
     @Column("timestamp", { precision: 3, default: () => "CURRENT_TIMESTAMP(3)" })
     fec_crea: string;
