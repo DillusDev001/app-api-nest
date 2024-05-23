@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty } from "class-validator";
 
-export class RecepcionFrxDto {
+export class OrdenFrxDto {
     
     @ApiProperty()
     @IsNotEmpty()
@@ -9,42 +9,45 @@ export class RecepcionFrxDto {
 
     @ApiProperty()
     @IsNotEmpty()
-    fec_recepcion: string;
+    desde_fecha: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    user_recepcion: string;
-
-    @ApiProperty()
-    observaciones: string;
-
-
-    @ApiProperty()
-    user_asignado: string;
-
-    @ApiProperty()
-    fec_ini: string;
-
-    @ApiProperty()
-
-    fec_fin: string;
-
-    @ApiProperty()
-    estado: number;
-
-
-    @ApiProperty()
-    fec_crea: string;
+    hasta_fecha: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    user_crea: string;
-
-    @ApiProperty()
-    fec_mod: string;
+    lugar: string;
 
     @ApiProperty()
     @IsNotEmpty()
-    user_mod: string;
+    asumido: string;
 
+    @ApiProperty()
+    @IsNotEmpty()
+    incertidumbre: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    entrega: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    mediante: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    pago: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    pago_hasta: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    factura: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    factura_hasta: string;
 }

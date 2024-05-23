@@ -123,6 +123,20 @@ CREATE TABLE servicio(
     FOREIGN KEY (id_tipo_servicio) REFERENCES tipo_servicio(id_tipo_servicio) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE cuenta(
+    id_cuenta INT NOT NULL PRIMARY KEY,
+    id_servicio INT NOT NULL,
+    banco VARCHAR(50) NOT NULL,
+    nro_cuenta VARCHAR(50) NOT NULL,
+    a_nombre VARCHAR(50) NOT NULL,
+    img VARCHAR(50) NOT NULL,
+    fec_crea TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_crea VARCHAR(50) NOT NULL,
+    fec_mod TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    user_mod VARCHAR(50) NOT NULL,
+    FOREIGN KEY (id_servicio) REFERENCES servicio(id_servicio) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 CREATE TABLE sub_servicios(
     id_sub_servicio INT AUTO_INCREMENT,
     id_servicio INT NOT NULL,
@@ -202,17 +216,33 @@ CREATE TABLE muestra_parametro_frx(
 
 CREATE TABLE recepcion_frx(
     cod_cotizacion VARCHAR(50) PRIMARY KEY NOT NULL,
-    fec_recepcion DATETIME,
+    fec_recepcion VARCHAR(50) NOT NULL,
     user_recepcion VARCHAR(50) NOT NULL,
-    observaciones VARCHAR(50) NOT NULL,
-    user_asignado VARCHAR(50),
-    fec_ini DATETIME,
-    fec_fin DATETIME,
+    observaciones VARCHAR(50) DEFAULT '',
+    user_asignado VARCHAR(50) DEFAULT '',
+    fec_ini VARCHAR(50) DEFAULT '',
+    fec_fin VARCHAR(50) DEFAULT '',
     estado INT DEFAULT 1,
     fec_crea TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_crea VARCHAR(50) NOT NULL,
     fec_mod TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     user_mod VARCHAR(50) NOT NULL,
+    FOREIGN KEY (cod_cotizacion) REFERENCES cotizacion_frx(cod_cotizacion) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE orden_frx(
+    cod_cotizacion VARCHAR(50) PRIMARY KEY,
+    desde_fecha VARCHAR(50) NOT NULL,
+    hasta_fecha VARCHAR(50) NOT NULL,
+    lugar VARCHAR(50) NOT NULL,
+    asumido VARCHAR(50) NOT NULL,
+    incertidumbre VARCHAR(50) NOT NULL,
+    entrega VARCHAR(50) NOT NULL,
+    mediante VARCHAR(50) NOT NULL,
+    pago VARCHAR(50) NOT NULL,
+    pago_hasta VARCHAR(50) NOT NULL,
+    factura VARCHAR(50) NOT NULL,
+    factura_hasta VARCHAR(50) NOT NULL,
     FOREIGN KEY (cod_cotizacion) REFERENCES cotizacion_frx(cod_cotizacion) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -247,6 +277,7 @@ CREATE TABLE cotizacion_general_sub_servicios(
     cod_cotizacion VARCHAR(50) NOT NULL,
     id_sub_servicio INT NOT NULL,
     costo_sub_servicio DECIMAL(10, 2),
+    observacion VARCHAR(500) NOT NULL,
     fec_crea TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_crea VARCHAR(50) NOT NULL,
     fec_mod TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -288,22 +319,18 @@ CREATE TABLE gasto(
     fec_vigencia VARCHAR(50) NOT NULL,
     registro VARCHAR(50) NOT NULL,
     tipo_gasto VARCHAR(50) NOT NULL,
-
     area VARCHAR(50) NOT NULL,
     fec_emision VARCHAR(50) NOT NULL,
     id_proveedor INT NOT NULL,
-
     tipo_cambio DECIMAL(10, 2) NOT NULL,
     tipo_pago VARCHAR(50) NOT NULL,
     tiempo_credito VARCHAR(50) NOT NULL,
     descripcion VARCHAR(500),
     fec_entrega VARCHAR(50),
-
     sub_total DECIMAL(10, 2) NOT NULL,
     descuento INT NOT NULL,
     total_bs DECIMAL(10, 2) NOT NULL,
     total_sus DECIMAL(10, 2) NOT NULL,
-    
     fec_crea TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_crea VARCHAR(50) NOT NULL,
     fec_mod TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -355,40 +382,40 @@ CREATE TABLE gasto_detalle(
  INSERT INTO `parametro_frx` (`id_parametro`,`nombre`,`costo_directo`,`costo_variable`,`fec_crea`,`user_crea`,`fec_mod`,`user_mod`) VALUES (2,'Parámetro 1',200.00,100.00,'2024-04-16 17:24:54','admin-dillus@ingenialab.com','2024-04-16 17:24:54','admin-dillus@ingenialab.com');
  */
 
- 
 /* 
  
- DROP TABLE code;
- DROP TABLE auth;
- DROP TABLE contacto;
- DROP TABLE autorizacion_route;
- DROP TABLE route;
- DROP TABLE usuario;
- 
- 
- DROP TABLE muestra_frx;
- DROP TABLE muestra_parametro_frx;
- DROP TABLE parametro_frx;
- DROP TABLE recepcion_frx;
- DROP TABLE documento_frx;
- DROP TABLE cotizacion_frx;
- 
- 
- DROP TABLE orden_trabajo_general;
- DROP TABLE cotizacion_general_sub_servicios;
- DROP TABLE cotizacion_general;
- 
- 
- DROP TABLE sub_servicios;
- DROP TABLE servicio;
- DROP TABLE tipo_servicio;
- 
+    DROP TABLE code;
+    DROP TABLE auth;
+    DROP TABLE contacto;
+    DROP TABLE autorizacion_route;
+    DROP TABLE route;
+    DROP TABLE usuario;
+    
+    
+    DROP TABLE muestra_frx;
+    DROP TABLE muestra_parametro_frx;
+    DROP TABLE parametro_frx;
+    DROP TABLE orden_frx;
+    DROP TABLE recepcion_frx;
+    DROP TABLE documento_frx;
+    DROP TABLE cotizacion_frx;
+    
+    
+    DROP TABLE orden_trabajo_general;
+    DROP TABLE cotizacion_general_sub_servicios;
+    DROP TABLE cotizacion_general;
+    
+    
+    DROP TABLE sub_servicios;
+    DROP TABLE cuenta;
+    DROP TABLE servicio;
+    DROP TABLE tipo_servicio;
+    
 
- DROP TABLE gasto_detalle;
- DROP TABLE gasto;
- DROP TABLE proveedor;
+    DROP TABLE gasto_detalle;
+    DROP TABLE gasto;
+    DROP TABLE proveedor;
 
- DROP TABLE empresa;
- DROP TABLE persona;
- 
- */
+    DROP TABLE empresa;
+    DROP TABLE persona;
+*/

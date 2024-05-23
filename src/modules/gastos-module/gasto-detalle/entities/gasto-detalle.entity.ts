@@ -18,10 +18,10 @@ export class GastoDetalle {
     @Column()
     unidad_medida: string;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     precio_unidad: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     precio_total: number;
 
 

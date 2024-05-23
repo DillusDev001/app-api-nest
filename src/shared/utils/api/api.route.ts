@@ -176,6 +176,29 @@ export const routeServicioDelete = {
     title: 'Delete Servicio'
 };
 
+// ========= CUENTA ========= \\
+export const routeCuentaAdd = {
+    route: '[POST].../v1/cuenta',
+    title: 'Registro Cuenta'
+};
+
+export const routeCuentaGet = {
+    route: '[GET].../v1/cuenta/:id_cuenta',
+    title: 'Obtener un Cuenta'
+};
+
+export const routeCuentaUpdate = {
+    route: '[PATCH].../v1/cuenta/:id_cuenta',
+    title: 'Update Cuenta'
+};
+
+export const routeCuentaDelete = {
+    route: '[DELETE].../v1/cuenta/:id_cuenta',
+    title: 'Delete Cuenta'
+};
+
+
+
 // ========= SUB SERVICIO ========= \\
 export const routeSubServicioAdd = {
     route: '[POST].../v1/sub-servicio',
@@ -302,6 +325,27 @@ export const routeRecepcionDelete = {
     title: 'Delete Recepción'
 };
 
+// ========= ORDEN ========= \\
+export const routeOrdenAdd = {
+    route: '[POST].../v1/orden',
+    title: 'Registro Cuenta'
+};
+
+export const routeOrdenGet = {
+    route: '[GET].../v1/cuenta/:cod_cotizacion',
+    title: 'Obtener un orden'
+};
+
+export const routeOrdenUpdate = {
+    route: '[PATCH].../v1/cuenta/:cod_cotizacion',
+    title: 'Update orden'
+};
+
+export const routeOrdenDelete = {
+    route: '[DELETE].../v1/cuenta/:cod_cotizacion',
+    title: 'Delete orden'
+};
+
 // ========= DOCUMENTO ========= \\
 export const routeDocumentoAdd = {
     route: '[POST].../v1/documento',
@@ -398,17 +442,17 @@ export const routeProovedorDelete = {
 
 // ========= COTIZACION ========= \\
 export const routeGastoAdd = {
-    route: '[POST].../v1/cotizacion-frx',
+    route: '[POST].../v1/gasto',
     title: 'Registro Gasto'
 };
 
 export const routeGastoGet = {
-    route: '[GET].../v1/cotizacion-frx/:cod_cotizacion',
+    route: '[GET].../v1/gasto',
     title: 'Búsqueda Gasto'
 };
 
 export const routeGastoGetLista = {
-    route: '[GET].../v1/cotizacion-frx/find-by-id-tipo-servicio/:id_tipo_servicio',
+    route: '[GET].../v1/gasto',
     title: 'Obtener lista Gasto'
 };
 

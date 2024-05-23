@@ -6,6 +6,8 @@ export class UpdateCotizacionGeneralSubServicioDto extends PartialType(Cotizacio
     cod_cotizacion: string;
     id_sub_servicio: number;
     costo_sub_servicio: number;
+    
+    observacion: string;
 
 
     fec_crea: string;

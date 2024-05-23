@@ -8,7 +8,7 @@ import { ServiceResult } from 'src/shared/interfaces/service.result';
 
 @Injectable()
 export class CotizacionFrxService {
-  
+
   constructor(@InjectRepository(CotizacionFrx) private cotizacionFrxRepository: Repository<CotizacionFrx>) { }
 
   async create(cotizacionFrxDto: CotizacionFrxDto): Promise<ServiceResult> {
@@ -65,7 +65,7 @@ export class CotizacionFrxService {
 
   async findAll(): Promise<ServiceResult> {
     let serviceResult = { boolean: false, message: '', number: 0, object: null, data: null } as ServiceResult;
-    const result = await this.cotizacionFrxRepository.find();
+    const result = await this.cotizacionFrxRepository.find({ order: { cod_cotizacion: "DESC" } });
     const count = result.length;
 
     serviceResult.boolean = true;

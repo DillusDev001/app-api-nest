@@ -29,7 +29,7 @@ export class Gasto {
     id_proveedor: number;
 
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     tipo_cambio: number;
 
     @Column()
@@ -45,16 +45,16 @@ export class Gasto {
     fec_entrega: string;
 
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     sub_total: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     descuento: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     total_bs: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     total_sus: number;
 
 

@@ -44,7 +44,7 @@ export class ServicioService {
     const count = result.length;
     
     if(count === 1){
-      serviceResult.boolean = true;
+      serviceResult.boolean = count > 0 ? true : false;
       serviceResult.message = count + ' servicio encontrado.';
       serviceResult.number = count;
       serviceResult.data = result;

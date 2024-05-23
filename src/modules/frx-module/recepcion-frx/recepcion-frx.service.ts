@@ -78,6 +78,29 @@ export class RecepcionFrxService {
     return serviceResult;
   }
 
+  async findMiLista(user_asignado: string): Promise<ServiceResult> {
+    let serviceResult = { boolean: false, message: '', number: 0, object: null, data: null } as ServiceResult;
+    const result = await this.recepcionRepository.find({where: {user_asignado}});
+    const count = result.length;
+
+    if (count > 0) {
+      for (let i = 0; i < count; i++) {
+        const resultCotizacion = await this.cotizacionFrxService.find(result[i].cod_cotizacion);
+
+        if (resultCotizacion.boolean) {
+          result[i]['cotizacion'] = resultCotizacion.data;
+        }
+      }
+    }
+
+    serviceResult.boolean = true;
+    serviceResult.message = count + ' cotización(es) encontrado(s).';
+    serviceResult.number = count;
+    serviceResult.data = result;
+
+    return serviceResult;
+  }
+
   async update(cod_cotizacion: string, updateRecepcionFrxDto: UpdateRecepcionFrxDto): Promise<ServiceResult> {
     let serviceResult = { boolean: false, message: '', number: 0, object: null, data: null } as ServiceResult;
     const updateAuth = await this.recepcionRepository.update(cod_cotizacion, updateRecepcionFrxDto);

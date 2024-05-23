@@ -24,13 +24,13 @@ export class CotizacionGeneral {
     @Column()
     observacion: string;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     costo_total: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     descuento: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     total_pagar: number;
 
 

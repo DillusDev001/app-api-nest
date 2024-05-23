@@ -15,6 +15,10 @@ export class CotizacionGeneralSubServicioDto {
     @IsNotEmpty()
     costo_sub_servicio: number;
 
+    @ApiProperty()
+    @IsNotEmpty()
+    observacion: string;
+
 
     @ApiProperty()
     fec_crea: string;

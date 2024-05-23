@@ -62,6 +62,28 @@ export class ServicioController {
     return apiResult;
   }
 
+  @Get('id_servicio/:id_servicio')
+  async findByID(@Param('id_servicio') id_servicio: number): Promise<ApiResult> {
+    let apiResult = { title: routeServicioGetTipoServicio.title, route: routeServicioGetTipoServicio.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
+
+    try {
+      const result = await this.servicioService.findByIdServicio(id_servicio);
+
+      apiResult.status = 'correct';
+      apiResult.code = HttpStatus.OK;
+      apiResult.message = result.message;
+      apiResult.boolean = true;
+      apiResult.rows = result.number;
+      apiResult.data = result.data;
+
+    } catch (error) {
+      apiResult.code = HttpStatus.NOT_FOUND;
+      apiResult.message = error.code;
+    }
+
+    return apiResult;
+  }
+
   @Get('tipo-servicio/:id_tipo_servicio')
   async findByTipoServicio(@Param('id_tipo_servicio') id_tipo_servicio: number): Promise<ApiResult> {
     let apiResult = { title: routeServicioGetTipoServicio.title, route: routeServicioGetTipoServicio.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;

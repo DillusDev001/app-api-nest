@@ -36,7 +36,8 @@ import { GastoModule } from './modules/gastos-module/gasto/gasto.module';
 import { GastoDetalleModule } from './modules/gastos-module/gasto-detalle/gasto-detalle.module';
 import { CotizacionGeneralModule } from './modules/servicio-general-module/cotizacion-general/cotizacion-general.module';
 import { CotizacionGeneralSubServicioModule } from './modules/servicio-general-module/cotizacion-general-sub-servicio/cotizacion-general-sub-servicio.module';
-import { OrdenTrabajoGeneralModule } from './modules/gastos-module/orden-trabajo-general/orden-trabajo-general.module';
+import { CuentaModule } from './modules/servicio-module/cuenta/cuenta.module';
+import { OrdenFrxModule } from './modules/frx-module/orden-frx/orden-frx.module';
 
 // ================================================================= \\
 
@@ -72,6 +73,7 @@ import { OrdenTrabajoGeneralModule } from './modules/gastos-module/orden-trabajo
     TipoServicioModule,
 
     ServicioModule,
+    CuentaModule,
     SubServicioModule,
 
     CotizacionFrxModule,
@@ -79,11 +81,11 @@ import { OrdenTrabajoGeneralModule } from './modules/gastos-module/orden-trabajo
     ParametroFrxModule,
     MuestraParametroFrxModule,
     RecepcionFrxModule,
+    OrdenFrxModule,
     DocumentoFrxModule,
 
     CotizacionGeneralModule,
     CotizacionGeneralSubServicioModule,
-    OrdenTrabajoGeneralModule,
   
     ProveedorModule,
     GastoModule,

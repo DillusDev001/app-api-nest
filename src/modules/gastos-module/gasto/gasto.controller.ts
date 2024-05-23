@@ -84,6 +84,32 @@ export class GastoController {
     return apiResult;
   }
 
+  @Get('busqueda/:attribute/:value')
+  async findAtribute(@Param('attribute') attribute: string, @Param('value') value: string): Promise<ApiResult> {
+    let apiResult = { title: routeGastoGetLista.title, route: routeGastoGetLista.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
+
+    try {
+      const result = await this.gastoService.findAtribute(attribute, value);
+
+      if (result.boolean) {
+        apiResult.status = 'correct';
+        apiResult.code = HttpStatus.OK;
+        apiResult.message = result.message;
+        apiResult.boolean = true;
+        apiResult.rows = result.number;
+        apiResult.data = result.data;
+      } else {
+        apiResult.code = HttpStatus.CONFLICT;
+        apiResult.message = result.message;
+      }
+    } catch (error) {
+      apiResult.code = HttpStatus.NOT_FOUND;
+      apiResult.message = error.code;
+    }
+
+    return apiResult;
+  }
+
   @Patch(':codigo_gasto')
   async update(@Param('codigo_gasto') codigo_gasto: string, @Body() updateGastoDto: UpdateGastoDto): Promise<ApiResult> {
     let apiResult = { title: routeGastoUpdate.title, route: routeGastoUpdate.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
@@ -128,6 +154,32 @@ export class GastoController {
       } else {
         apiResult.code = HttpStatus.CONFLICT;
         apiResult.message = codeResult.message;
+      }
+    } catch (error) {
+      apiResult.code = HttpStatus.NOT_FOUND;
+      apiResult.message = error.code;
+    }
+
+    return apiResult;
+  }
+
+  @Get('last-code/:area')
+  async findLastCode(@Param('area') area: string): Promise<ApiResult> {
+    let apiResult = { title: routeGastoGet.title, route: routeGastoGet.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
+    
+    try {
+      const result = await this.gastoService.findLastCode(area);
+
+      if (result.boolean) {
+        apiResult.status = 'correct';
+        apiResult.code = HttpStatus.OK;
+        apiResult.message = result.message;
+        apiResult.boolean = true;
+        apiResult.rows = result.number;
+        apiResult.data = result.data;
+      } else {
+        apiResult.code = HttpStatus.CONFLICT;
+        apiResult.message = result.message;
       }
     } catch (error) {
       apiResult.code = HttpStatus.NOT_FOUND;

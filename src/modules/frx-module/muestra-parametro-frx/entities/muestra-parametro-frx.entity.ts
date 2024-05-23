@@ -17,10 +17,10 @@ export class MuestraParametroFrx {
     @Column()
     cantidad: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     costo_parametro_unitario: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     costo_parametro_total: number;
 
     @Column()

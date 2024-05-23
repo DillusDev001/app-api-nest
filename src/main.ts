@@ -36,6 +36,7 @@ async function bootstrap() {
 
     .addTag('tipo-servicio')
     .addTag('servicio')
+    .addTag('cuenta')
     .addTag('sub-servicio')
 
     .addTag('cotizacion-frx')
@@ -43,11 +44,11 @@ async function bootstrap() {
     .addTag('parametro-frx')
     .addTag('muestra-parametro-frx')
     .addTag('recepcion-frx')
+    .addTag('orden-frx')
     .addTag('documento-frx')
 
     .addTag('cotizacion-general')
     .addTag('cotizacion-general-sub-servicio')
-    .addTag('orden-trabajo-general')
 
     .addTag('proveedor')
     .addTag('gasto')

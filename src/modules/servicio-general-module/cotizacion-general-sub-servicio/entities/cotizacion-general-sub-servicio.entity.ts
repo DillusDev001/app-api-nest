@@ -9,8 +9,11 @@ export class CotizacionGeneralSubServicio {
     @PrimaryColumn()
     id_sub_servicio: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     costo_sub_servicio: number;
+
+    @Column()
+    observacion: string;
 
     @Column()
     fec_crea: string;

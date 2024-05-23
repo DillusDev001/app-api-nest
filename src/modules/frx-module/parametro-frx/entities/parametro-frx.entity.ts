@@ -8,10 +8,10 @@ export class ParametroFrx {
     @Column()
     nombre: string;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     costo_directo: number;
 
-    @Column()
+    @Column('decimal', { precision: 10, scale: 2 })
     costo_variable: number;
 
 

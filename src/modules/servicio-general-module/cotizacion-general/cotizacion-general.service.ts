@@ -16,10 +16,11 @@ export class CotizacionGeneralService {
 
     // Agregar usuario a DB
     const newCode = this.cotizacionGeneralRepository.create(cotizacionFrxDto);
-    await this.cotizacionGeneralRepository.save(newCode);
+    const add = await this.cotizacionGeneralRepository.save(newCode);
 
     serviceResult.boolean = true;
     serviceResult.message = 'Cotización: ' + cotizacionFrxDto.cod_cotizacion + ' se ha agregado correctamente.';
+    serviceResult.object = add;
 
     return serviceResult;
   }
@@ -64,7 +65,7 @@ export class CotizacionGeneralService {
 
   async findAll(): Promise<ServiceResult> {
     let serviceResult = { boolean: false, message: '', number: 0, object: null, data: null } as ServiceResult;
-    const result = await this.cotizacionGeneralRepository.find();
+    const result = await this.cotizacionGeneralRepository.find({ order: { cod_cotizacion: "DESC" } });
     const count = result.length;
 
     serviceResult.boolean = true;

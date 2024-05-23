@@ -84,6 +84,32 @@ export class RecepcionFrxController {
     return apiResult;
   }
 
+  @Get('mi-lista/:user_asignado')
+  async findMiLista(@Param('user_asignado') user_asignado: string): Promise<ApiResult> {
+    let apiResult = { title: routeRecepcionGet.title, route: routeRecepcionGet.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;
+
+    try {
+      const result = await this.recepcionFrxService.findMiLista(user_asignado);
+
+      if (result.boolean) {
+        apiResult.status = 'correct';
+        apiResult.code = HttpStatus.OK;
+        apiResult.message = result.message;
+        apiResult.boolean = true;
+        apiResult.rows = result.number;
+        apiResult.data = result.data;
+      } else {
+        apiResult.code = HttpStatus.CONFLICT;
+        apiResult.message = result.message;
+      }
+    } catch (error) {
+      apiResult.code = HttpStatus.NOT_FOUND;
+      apiResult.message = error.code;
+    }
+
+    return apiResult;
+  }
+
   @Patch(':cod_cotizacion')
   async update(@Param('cod_cotizacion') cod_cotizacion: string, @Body() updateRecepcionFrxDto: UpdateRecepcionFrxDto): Promise<ApiResult> {
     let apiResult = { title: routeRecepcionUpdate.title, route: routeRecepcionUpdate.route, status: 'error', code: 0, message: '', boolean: false, rows: 0, data: null } as ApiResult;

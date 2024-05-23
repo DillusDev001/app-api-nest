@@ -53,7 +53,7 @@ export class EmpresaService {
 
     const count = result.length;
 
-    serviceResult.boolean = true;
+    serviceResult.boolean = count > 0 ? true : false;
     serviceResult.message = count + ' empresa(s) encontrada(s).';
     serviceResult.number = count;
     serviceResult.data = result;
